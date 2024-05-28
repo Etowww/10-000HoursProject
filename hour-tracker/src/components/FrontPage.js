@@ -1,3 +1,5 @@
+// DBTow
+
 import React, { useState } from 'react';
 import Chart from './Chart';
 import AddActivityButton from './AddActivityButton';
@@ -34,17 +36,19 @@ const FrontPage = () => {
     const handleLogHours = ({ activity, hours, description }) => {
         // Find the index of the activity in the activities array
         const activityIndex = activities.indexOf(activity);
+        // Create a copy of the datasets array to avoid mutating the state directly
+        const updatedDatasets = [...hoursData.datasets];
         // Update the logged hours for the selected activity
+        updatedDatasets[0].data[activityIndex] += hours;
+        // Update the state with the new datasets array
         setHoursData({
             ...hoursData,
-            datasets: hoursData.datasets.map((dataset, index) => ({
-                ...dataset,
-                data: index === activityIndex ? [...dataset.data, hours] : dataset.data,
-            })),
+            datasets: updatedDatasets,
         });
         // Optionally, you can store the logged hours and description in your backend database here
         // Reset form fields if needed
     };
+    
 
     return (
         <div>

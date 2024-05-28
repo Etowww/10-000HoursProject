@@ -1,58 +1,57 @@
+// DBTow
+
 import React, { useState } from 'react';
 
-const LogHoursForm = () => {
-  const [activity, setActivity] = useState('');
-  const [hours, setHours] = useState('');
-  const [description, setDescription] = useState('');
+const LogHoursForm = ({ activities, onLogHours }) => {
+    const [selectedActivity, setSelectedActivity] = useState('');
+    const [hoursLogged, setHoursLogged] = useState('');
+    const [description, setDescription] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add logic to handle form submission (e.g., sending data to backend)
-    console.log('Activity:', activity);
-    console.log('Hours:', hours);
-    console.log('Description:', description);
-    // Reset form fields
-    setActivity('');
-    setHours('');
-    setDescription('');
-  };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Validate input fields
+        if (!selectedActivity || !hoursLogged.trim()) {
+            alert('Please select an activity and enter valid hours');
+            return;
+        }
+        // Call the onLogHours function with the logged hours data
+        onLogHours({
+            activity: selectedActivity,
+            hours: parseFloat(hoursLogged),
+            description: description.trim(),
+        });
+        // Reset the form
+        setSelectedActivity('');
+        setHoursLogged('');
+        setDescription('');
+    };
 
-  return (
-    <div>
-      <h2>Log Hours</h2>
-      <form onSubmit={handleSubmit}>
+    return (
         <div>
-          <label>Select Activity:</label>
-          <select
-            value={activity}
-            onChange={(e) => setActivity(e.target.value)}
-            required
-          >
-            <option value="">Select an activity</option>
-            {/* Add options dynamically based on existing activities */}
-          </select>
+            <h2>Log Hours</h2>
+            <form onSubmit={handleSubmit}>
+                <select value={selectedActivity} onChange={(e) => setSelectedActivity(e.target.value)}>
+                    <option value="">Select an activity</option>
+                    {activities.map((activity) => (
+                        <option key={activity} value={activity}>{activity}</option>
+                    ))}
+                </select>
+                <input
+                    type="number"
+                    value={hoursLogged}
+                    onChange={(e) => setHoursLogged(e.target.value)}
+                    placeholder="Hours logged"
+                />
+                <input
+                    type="text"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Description"
+                />
+                <button type="submit">Log Hours</button>
+            </form>
         </div>
-        <div>
-          <label>Hours:</label>
-          <input
-            type="number"
-            value={hours}
-            onChange={(e) => setHours(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Description:</label>
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Log Hours</button>
-      </form>
-    </div>
-  );
+    );
 };
 
 export default LogHoursForm;

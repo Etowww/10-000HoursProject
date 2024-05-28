@@ -9,11 +9,12 @@ const AddActivityButton = ({ onAddActivity }) => {
     };
 
     return (
-        <div>
+        <div style={{ display: 'inline-block' }}>
             <button onClick={handleToggleForm}>Add New Activity</button>
-            {showForm && <AddActivityForm onAddActivity={onAddActivity} />}
+            {showForm && <div className="form-container"><AddActivityForm onAddActivity={onAddActivity} /></div>}
         </div>
     );
 };
 
 export default AddActivityButton;
+

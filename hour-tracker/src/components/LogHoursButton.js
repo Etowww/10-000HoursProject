@@ -9,11 +9,12 @@ const LogHoursButton = ({ activities, onLogHours }) => {
     };
 
     return (
-        <div>
+        <div style={{ display: 'inline-block' }}>
             <button onClick={handleToggleForm}>Log Hours</button>
-            {showForm && <LogHoursForm activities={activities} onLogHours={onLogHours} />}
+            {showForm && <div className="form-container"><LogHoursForm activities={activities} onLogHours={onLogHours} /></div>}
         </div>
     );
 };
 
 export default LogHoursButton;
+

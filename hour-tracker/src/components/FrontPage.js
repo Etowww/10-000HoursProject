@@ -53,12 +53,13 @@ const FrontPage = () => {
     return (
         <div>
             <h1>10,000 Hour Project</h1>
-            {/* Add Chart component here */}
-            <Chart data={hoursData} />
-            {/* Add button and form for adding new activity */}
-            <AddActivityButton onAddActivity={handleAddActivity} />
-            {/* Add button and form for logging hours */}
-            <LogHoursButton activities={activities} onLogHours={handleLogHours} />
+            <div className="chart-container">
+                <Chart data={hoursData} />
+            </div>
+            <div style={{ textAlign: 'center' }}>
+                <AddActivityButton onAddActivity={handleAddActivity} />
+                <LogHoursButton activities={activities} onLogHours={handleLogHours} />
+            </div>
         </div>
     );
 };

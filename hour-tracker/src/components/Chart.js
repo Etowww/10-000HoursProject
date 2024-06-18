@@ -1,11 +1,11 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
+import '../index.css';
 
 const Chart = ({ data }) => {
     return (
-        <div>
-            <h2>Hours Logged</h2>
+        <div className='chart-container'>
             <Bar
                 data={data}
                 options={{

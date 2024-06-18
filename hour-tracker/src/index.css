@@ -21,8 +21,13 @@ h1 {
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   margin: 20px auto;
+  margin-top: 3%; /* Adjusted the margin for the desired vertical spacing */
   width: 80%;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
+
 
 button {
   background-color: #ffeb3b;
@@ -51,4 +56,52 @@ button:hover {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   margin: 20px auto;
   width: 50%;
+}
+
+
+/* [6/18] Updates */
+
+/* Header Styles */
+header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+header h1 {
+  margin: 0;
+  padding: 0;
+  color: #ffeb3b;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Intro Text Styles */ /*[6/18]*/
+.intro-text {
+  color: #ffeb3b;
+  text-align: center;
+  max-width: 60%;
+  line-height: 1.6;
+  font-size: 1rem;
+  margin: 0 auto;
+  margin-top: 6.5%;
+}
+
+
+
+
+/* Responsive adjustments */ /*[6/18]*/
+@media (max-width: 768px) {
+  header {
+    padding: 10px;
+  }
+
+  header h1 {
+    font-size: 1.5em;
+  }
 }
